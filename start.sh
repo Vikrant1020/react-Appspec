@@ -2,4 +2,4 @@
 
 cd /home/ubuntu
 
-npm start & sleep 60 
+npm start
