@@ -2,4 +2,4 @@
 
 cd /home/ubuntu
 
-npm start & sleep 60
+screen -d -m npm start
