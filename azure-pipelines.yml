@@ -34,11 +34,11 @@ jobs:
       Contents: 'build'
       ArtifactName: 'build'
       ArtifactType: 'FilePath'
-  # - task: PublishBuildArtifacts@1
-  #   inputs:
-  #     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-  #     ArtifactName: 'drop'
-  #     publishLocation: 'Container'
+  - task: PublishBuildArtifacts@1
+    inputs:
+      PathtoPublish: '/home/'
+      ArtifactName: 'testing'
+
 
 # jobs: 
 # - deployment: VMDeploy
