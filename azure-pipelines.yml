@@ -28,14 +28,15 @@ jobs:
       PathtoPublish: '$(Build.ArtifactStagingDirectory)'
       ArtifactName: 'drop'
       publishLocation: 'Container'
-- job: testing2
+
+jobs: 
 - deployment: VMDeploy
-  displayName: webdeployment
+  displayName: web
   environment:
-    name: vikrant
+    name: <environment name>
     resourceType: VirtualMachine
   strategy:
-      rolling:
+    rolling:
         maxParallel: 2  #for percentages, mention as x%
           
         deploy:
