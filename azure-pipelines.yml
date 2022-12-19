@@ -22,14 +22,11 @@ jobs:
       npm install
       npm run build
     displayName: 'npm install and build'
-  - task: CopyPublishBuildArtifacts@1
+  - task: PublishBuildArtifacts@1
     inputs:
-      CopyRoot: 'build/*'
-      Contents: '**'
-      ArtifactName: 'testing'
-      ArtifactType: 'Container' 
-
-- job: 
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+      ArtifactName: 'drop'
+      publishLocation: 'Container'
 
 - deployment: VMDeploy
   displayName: webdeployment
