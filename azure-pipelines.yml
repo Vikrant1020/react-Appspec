@@ -23,11 +23,16 @@ jobs:
       npm install
       npm run build
     displayName: 'npm install and build'
-  - task: PublishBuildArtifacts@1
+  - task: DownloadBuildArtifacts@1
     inputs:
-      PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-      ArtifactName: 'drop'
-      publishLocation: 'Container'
+      buildType: 'current'
+      downloadType: 'specific'
+      downloadPath: '$(System.ArtifactsDirectory)'
+  # - task: PublishBuildArtifacts@1
+  #   inputs:
+  #     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+  #     ArtifactName: 'drop'
+  #     publishLocation: 'Container'
 
 # jobs: 
 # - deployment: VMDeploy
