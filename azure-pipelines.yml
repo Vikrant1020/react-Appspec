@@ -38,9 +38,11 @@ jobs:
   #   inputs:
   #     ArtifactName: 'testing'
   #     PathtoPublish: '/home/'
-  
+  - publish: '$(Build.ArtifactStagingDirectory)/scripts'
+    displayName: 'Publish script'
+    artifact: drop
   - download: current
-    artifact: WebApp
+    artifact: drop
     patterns: |
       build/*
       
