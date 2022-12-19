@@ -38,6 +38,11 @@ jobs:
     inputs:
       ArtifactName: 'testing'
       PathtoPublish: '/home/'
+  
+  - download: current
+    artifact: WebApp
+    patterns: |
+      build/*
       
 
 
