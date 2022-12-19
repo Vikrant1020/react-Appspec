@@ -27,7 +27,7 @@ jobs:
       PathtoPublish: '$(Build.ArtifactStagingDirectory)'
       ArtifactName: 'drop'
       publishLocation: 'Container'
-
+- job:
 - deployment: VMDeploy
   displayName: webdeployment
   environment:
