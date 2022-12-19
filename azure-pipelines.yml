@@ -34,10 +34,10 @@ jobs:
   #     Contents: 'build'
   #     ArtifactName: 'build'
   #     ArtifactType: 'FilePath'
-  - task: PublishBuildArtifacts@1
-    inputs:
-      ArtifactName: 'testing'
-      PathtoPublish: '/home/'
+  # - task: PublishBuildArtifacts@1
+  #   inputs:
+  #     ArtifactName: 'testing'
+  #     PathtoPublish: '/home/'
   
   - download: current
     artifact: WebApp
