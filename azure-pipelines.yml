@@ -9,8 +9,9 @@ trigger:
 
 pool:
   vmImage: ubuntu-latest
+  
 jobs:
-- job:
+- job: testin1
   displayName: Build
   steps:
   - task: NodeTool@0
@@ -27,7 +28,7 @@ jobs:
       PathtoPublish: '$(Build.ArtifactStagingDirectory)'
       ArtifactName: 'drop'
       publishLocation: 'Container'
-- job:
+- job: testing2
 - deployment: VMDeploy
   displayName: webdeployment
   environment:
@@ -36,15 +37,14 @@ jobs:
   strategy:
       rolling:
         maxParallel: 2  #for percentages, mention as x%
-        preDeploy:
+          
+        deploy:
           steps:
           - task: DownloadBuildArtifacts@1
             inputs:
               buildType: 'current'
               downloadType: 'specific'
               downloadPath: '$(System.ArtifactsDirectory)'
-        deploy:
-          steps:
           - task: Bash@3
             inputs:
               targetType: 'inline'
