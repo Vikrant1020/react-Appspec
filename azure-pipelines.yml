@@ -9,27 +9,30 @@ trigger:
 
 pool:
   vmImage: ubuntu-latest
+jobs:
+- job:
+  displayName: Build
+  steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '14.x'
+    displayName: 'Install Node.js'
 
-steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '14.x'
-  displayName: 'Install Node.js'
+  - script: |
+      npm install
+      npm run build
+    displayName: 'npm install and build'
+  - task: CopyPublishBuildArtifacts@1
+    inputs:
+      CopyRoot: 'build/*'
+      Contents: '**'
+      ArtifactName: 'testing'
+      ArtifactType: 'Container' 
 
-- script: |
-    npm install
-    npm run build
-  displayName: 'npm install and build'
-- task: CopyPublishBuildArtifacts@1
-  inputs:
-    CopyRoot: 'build/*'
-    Contents: '**'
-    ArtifactName: 'testing'
-    ArtifactType: 'Container' 
-jobs: 
+- job: 
 
 - deployment: VMDeploy
-  displayName: web
+  displayName: webdeployment
   environment:
     name: vikrant
     resourceType: VirtualMachine
