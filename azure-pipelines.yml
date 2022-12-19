@@ -36,8 +36,9 @@ jobs:
   #     ArtifactType: 'FilePath'
   - task: PublishBuildArtifacts@1
     inputs:
-      PathtoPublish: '/home/'
       ArtifactName: 'testing'
+      PathtoPublish: '/home/'
+      
 
 
 # jobs: 
