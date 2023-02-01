@@ -1,4 +1,9 @@
-
+parameters:
+- name: experimentalTemplate
+  displayName: 'Use experimental build process?'
+  type: boolean
+  default: false
+  
 stages:
 - stage: Build
   displayName: Build stage
