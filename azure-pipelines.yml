@@ -39,7 +39,7 @@ stages:
   - deployment: VMDeploy
     displayName: Web deploy
     environment:
-      name: deployvm
+      name: vikrant
       resourceType: VirtualMachine
     strategy:
       rolling:
