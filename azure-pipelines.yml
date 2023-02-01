@@ -61,7 +61,7 @@ stages:
                 sudo rm -rf .git/
                 sudo rm -rf .env
                 sudo rm -rf .gitignore
-                sudo unzip /home/azureuser/azagent/_work/2/drop/mooglelabs.zip -d /home/azureuser/green-insight-frontend
+                sudo unzip /home/azureuser/azagent/_work/1/drop/mooglelabs.zip -d /home/azureuser/green-insight-frontend
                 
                 sudo rm -rf /var/www/html/*
                 cp -r /home/azureuser/green-insight-frontend/build/* /var/www/html/
