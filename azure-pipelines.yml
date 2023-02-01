@@ -3,8 +3,6 @@ trigger:
 
 extends:
   template: templates/shared-steps.yml
-  parameters:
-      yesNo: false
   
       
       
