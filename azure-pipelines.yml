@@ -8,7 +8,8 @@ resources:
 # Triggers the pipeline on a push to any branch except master
 trigger:
   branches:
-    - main
+    include:
+      - master
 
 extends:
   template: templates/shared-steps.yml
