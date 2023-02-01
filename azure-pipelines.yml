@@ -33,14 +33,14 @@ extends:
                   targetType: 'inline'
                   script: |
                 # Modify deployment script based on the app type
-                    echo "Starting deployment script run"
-                    cd /home/azureuser/green-insight-frontend
-                    sudo rm -rf *
-                    sudo rm -rf .git/
-                    sudo rm -rf .env
-                    sudo rm -rf .gitignore
-                    sudo unzip /home/azureuser/azagent/_work/1/drop/mooglelabs.zip -d /home/azureuser/green-insight-frontend
+                      echo "Starting deployment script run"
+                      cd /home/azureuser/green-insight-frontend
+                      sudo rm -rf *
+                      sudo rm -rf .git/
+                      sudo rm -rf .env
+                      sudo rm -rf .gitignore
+                      sudo unzip /home/azureuser/azagent/_work/1/drop/mooglelabs.zip -d /home/azureuser/green-insight-frontend
                 
-                    sudo rm -rf /var/www/html/*
-                    cp -r /home/azureuser/green-insight-frontend/build/* /var/www/html/
+                      sudo rm -rf /var/www/html/*
+                      cp -r /home/azureuser/green-insight-frontend/build/* /var/www/html/
 
