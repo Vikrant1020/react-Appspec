@@ -1,10 +1,15 @@
 trigger:
-- main
+  branches:
+    include:
+    - main
+    - testing  
 
-extends:
-  template: templates/shared-steps.yml
+# resources:
+#   templates:
+#   - template: templates/shared-steps.yml
 
 stages: 
+- template: templates/shared-steps.yml
 - stage: Deploy
   displayName: Deploy stage
   jobs:
