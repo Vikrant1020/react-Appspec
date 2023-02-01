@@ -1,7 +1,3 @@
-resources:
-  templates:
-  - path: templates/shared-steps.yml
-    type: git
 
 # Main pipeline
 # Extends the shared steps template
