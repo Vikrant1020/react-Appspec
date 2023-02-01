@@ -7,9 +7,7 @@ resources:
 # Extends the shared steps template
 # Triggers the pipeline on a push to any branch except master
 trigger:
-  branches:
-    include:
-      - main
+  - main
 
 extends:
   template: templates/shared-steps.yml
