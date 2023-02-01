@@ -1,11 +1,5 @@
-
-# Main pipeline
-# Extends the shared steps template
-# Triggers the pipeline on a push to any branch except master
 trigger:
-  branches:
-    include:
-      - master
+- main
 
 extends:
   template: templates/shared-steps.yml
