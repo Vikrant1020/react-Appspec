@@ -4,7 +4,7 @@ resources:
     parameters:
       buildImage: 'ubuntu-latest'
       
-
+stages:
 - stage: Deploy
   displayName: Deploy stage
   jobs:
