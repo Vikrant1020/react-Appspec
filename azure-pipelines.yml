@@ -4,40 +4,38 @@ trigger:
     - main
     - testing  
 
-# resources:
-#   templates:
-#   - template: templates/shared-steps.yml
+
 
 stages: 
 - template: templates/shared-steps.yml
-- stage: Deploy
-  displayName: Deploy stage
-  jobs:
-  - deployment: VMDeploy
-    displayName: Web deploy
-    environment:
-      name: vikrant
-      resourceType: VirtualMachine
-    strategy:
-      rolling:
-        maxParallel: 2  #for percentages, mention as x%
+# - stage: Deploy
+#   displayName: Deploy stage
+#   jobs:
+#   - deployment: VMDeploy
+#     displayName: Web deploy
+#     environment:
+#       name: vikrant
+#       resourceType: VirtualMachine
+#     strategy:
+#       rolling:
+#         maxParallel: 2  #for percentages, mention as x%
 
-        deploy:
-          steps:
-          - download: current
-            artifact: drop
+#         deploy:
+#           steps:
+#           - download: current
+#             artifact: drop
 
-          - task: Bash@3
-            inputs:
-              targetType: 'inline'
-              script: |
-                  echo "Starting deployment script run"
-                  cd /home/azureuser/green-insight-frontend
-                  sudo rm -rf *
-                  sudo rm -rf .git/
-                  sudo rm -rf .env
-                  sudo rm -rf .gitignore
-                  sudo unzip /home/azureuser/azagent/_work/1/drop/mooglelabs.zip -d /home/azureuser/green-insight-frontend
+#           - task: Bash@3
+#             inputs:
+#               targetType: 'inline'
+#               script: |
+#                   echo "Starting deployment script run"
+#                   cd /home/azureuser/green-insight-frontend
+#                   sudo rm -rf *
+#                   sudo rm -rf .git/
+#                   sudo rm -rf .env
+#                   sudo rm -rf .gitignore
+#                   sudo unzip /home/azureuser/azagent/_work/1/drop/mooglelabs.zip -d /home/azureuser/green-insight-frontend
 
-                  sudo rm -rf /var/www/html/*
-                  cp -r /home/azureuser/green-insight-frontend/build/* /var/www/html/
+#                   sudo rm -rf /var/www/html/*
+#                   cp -r /home/azureuser/green-insight-frontend/build/* /var/www/html/
