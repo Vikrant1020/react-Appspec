@@ -20,7 +20,7 @@ steps:
     submodules: true
   - task: AzureStaticWebApp@0
     inputs:
-      azure_static_web_apps_api_token: '1a904c7517c350dd5b111b9bbe9015462c74280b064bf42aad33968ae872dc063-29d3df3b-4c78-4294-af8b-c8a90e02120500f98802'
+      azure_static_web_apps_api_token: $(STATIC_WEB_APP_TOKEN)
 ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
 # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
       app_location: "/" # App source code path
