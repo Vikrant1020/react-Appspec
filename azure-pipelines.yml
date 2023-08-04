@@ -1,13 +1,31 @@
+# trigger:
+#   branches:
+#     include:
+#     - main
+#     # - testing  
+
+
+
+# stages: 
+# - template: templates/shared-steps.yml
+
 trigger:
-  branches:
-    include:
-    - main
-    # - testing  
+  - main
 
+pool:
+  vmImage: ubuntu-latest
 
+steps:
+  - checkout: self
+    submodules: true
+  - task: AzureStaticWebApp@0
+    inputs:
+      app_location: 'src' # App source code path relative to cwd
+      api_location: 'api' # Api source code path relative to cwd
+      output_location: 'public' # Built app content directory relative to app_location - optional
+      cwd: '$(System.DefaultWorkingDirectory)/myapp' # Working directory - optional
+      azure_static_web_apps_api_token: $(deployment_token)
 
-stages: 
-- template: templates/shared-steps.yml
 # - stage: Deploy
 #   displayName: Deploy stage
 #   jobs:
