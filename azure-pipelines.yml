@@ -24,7 +24,7 @@ steps:
       api_location: 'api' # Api source code path relative to cwd
       output_location: 'public' # Built app content directory relative to app_location - optional
       cwd: '$(System.DefaultWorkingDirectory)/myapp' # Working directory - optional
-      azure_static_web_apps_api_token: $(deployment_token)
+      azure_static_web_apps_api_token: "1a904c7517c350dd5b111b9bbe9015462c74280b064bf42aad33968ae872dc063-29d3df3b-4c78-4294-af8b-c8a90e02120500f98802"
 
 # - stage: Deploy
 #   displayName: Deploy stage
