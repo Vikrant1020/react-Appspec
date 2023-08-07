@@ -44,7 +44,7 @@ steps:
     app_location: '/my-app/build'
     api_location: 'api'  # If you have an API in your app
     output_location: 'build'
-    azure_static_web_apps_api_token: '56d4a5068d42e39254c7577040249238a05dba3e2794766f5cd7f34477383dfe3-c24b552c-228f-4481-beea-18397d7b1261010226252'
+    azure_static_web_apps_api_token: $(STATIC_WEB_APP_TOKEN)
     app_build_command: ''  # Add your build commands if needed
     skip_app_build: true   # Set to true if you want to skip build in the pipeline
     name: 'practice-forgs'          # Replace with your actual app name
