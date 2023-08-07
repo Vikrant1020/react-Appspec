@@ -4,45 +4,70 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-steps:
-- checkout: self  # This step checks out your repository
+stages:
+- stage: SONARQUBE 
+  displayName: SONARQUBE 
+  jobs:  
+  - job: Build
+    displayName: Build
+    steps:
+    - script: |
+          echo "SONARQUBE SLOT"
 
-- task: NodeTool@0
-  inputs:
-    versionSpec: '16.x'
-  displayName: 'Use Node.js'
+- stage: BUILD 
+  displayName: BUILD 
+  jobs:  
+  - job: Build
+    displayName: Build
+    steps:
+    
+    - task: NodeTool@0
+      inputs:
+        versionSpec: '16.x'
+      displayName: 'Use Node.js'
+    
+    - script: |
+        
+        npm install
+        npm run build
+      displayName: 'Build React app'
+    
+    - task: CopyFiles@2
+      inputs:
+        SourceFolder: '$(System.DefaultWorkingDirectory)/build'  # Update the path to your build output
+        Contents: '**'
+        TargetFolder: '$(Build.ArtifactStagingDirectory)'
+      displayName: 'Copy build to artifact staging directory'
 
-- script: |
-    # cd my-app  # Navigate to the my-app folder using the correct path
-    npm install
-    npm run build
-  displayName: 'Build React app'
-
-- task: CopyFiles@2
-  inputs:
-    SourceFolder: '$(System.DefaultWorkingDirectory)/build'  # Update the path to your build output
-    Contents: '**'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
-  displayName: 'Copy build to artifact staging directory'
+- stage: TEST 
+  displayName: TEST 
+  jobs:  
+  - job: Test
+    displayName: Test
+    steps:
+    - script: |
+         echo "TEST CASES"
 
 
-
-
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'react-app'
-    publishLocation: 'Container'
-
-- task: AzureStaticWebApp@0
-  inputs:
-    app_location: '/build'
-    api_location: 'api'  # If you have an API in your app
-    output_location: 'build'
-    azure_static_web_apps_api_token: $(STATIC_WEB_APP_TOKEN)
-    app_build_command: ''  # Add your build commands if needed
-    skip_app_build: true   # Set to true if you want to skip build in the pipeline
-   # name: 'practice-forgs'          # Replace with your actual app name
-   # resourceGroupName: 'Sakshi-rg'  # Replace with your actual resource group name
-   # location: 'Central US'
-   # sku: 'Free'
+- stage: DEPLOY 
+  displayName: DEPLOY 
+  jobs:  
+  - job: Build
+    displayName: Build
+    steps:
+    
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'react-app'
+        publishLocation: 'Container'
+    
+    - task: AzureStaticWebApp@0
+      inputs:
+        app_location: '/build'
+        api_location: 'api'  # If you have an API in your app
+        output_location: 'build'
+        azure_static_web_apps_api_token: $(STATIC_WEB_APP_TOKEN)
+        app_build_command: ''  # Add your build commands if needed
+        skip_app_build: true   # Set to true if you want to skip build in the pipeline
+       
