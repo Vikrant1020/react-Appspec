@@ -1,0 +1,53 @@
+trigger:
+  - main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- checkout: self  # This step checks out your repository
+
+- script: echo Install Node.js
+  displayName: 'Install Node.js'
+
+- task: NodeTool@0
+  inputs:
+    versionSpec: '14.x'
+  displayName: 'Use Node.js'
+
+- script: cd my-app && npm install
+  displayName: 'Install Node.js dependencies'
+
+- script: |
+    cd my-app  # Navigate to the my-app folder using the correct path
+    npm run build
+  displayName: 'Build React app'
+
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '$(System.DefaultWorkingDirectory)/my-app/build'  # Update the path to your build output
+    Contents: '**'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+  displayName: 'Copy build to artifact staging directory'
+
+
+
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'react-app'
+    publishLocation: 'Container'
+
+- task: AzureStaticWebApp@0
+  inputs:
+    app_location: '/my-app/build'
+    api_location: 'api'  # If you have an API in your app
+    output_location: 'build'
+    azure_static_web_apps_api_token: '56d4a5068d42e39254c7577040249238a05dba3e2794766f5cd7f34477383dfe3-c24b552c-228f-4481-beea-18397d7b1261010226252'
+    app_build_command: ''  # Add your build commands if needed
+    skip_app_build: true   # Set to true if you want to skip build in the pipeline
+    name: 'practice-forgs'          # Replace with your actual app name
+    resourceGroupName: 'Sakshi-rg'  # Replace with your actual resource group name
+    location: 'Central US'
+    sku: 'Free'
