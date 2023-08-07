@@ -5,14 +5,15 @@ pool:
   vmImage: 'ubuntu-latest'
 
 stages:
-# - stage: SONARQUBE 
-#   displayName: SONARQUBE 
-#   jobs:  
-#   - job: Sonarqube
-#     displayName: Sonarqube
-#     steps:
-#     - script: |
-#           echo "SONARQUBE SLOT"
+- stage: SONARQUBE 
+  displayName: SONARQUBE 
+  jobs:  
+  - job: Sonarqube
+    displayName: Sonarqube
+    steps:
+    - script: |
+          echo "SONARQUBE SLOT"
+          
 
 - stage: BUILD 
   displayName: BUILD 
@@ -27,7 +28,6 @@ stages:
       displayName: 'Use Node.js'
     
     - script: |
-        
         npm install
         npm run build
       displayName: 'Build React app'
@@ -44,15 +44,16 @@ stages:
         PathtoPublish: '$(Build.ArtifactStagingDirectory)'
         ArtifactName: 'GS'
         publishLocation: 'Container'
+        
 
-# - stage: TEST 
-#   displayName: TEST 
-#   jobs:  
-#   - job: Test
-#     displayName: Test
-#     steps:
-#     - script: |
-#          echo "TEST CASES"
+- stage: TEST 
+  displayName: TEST 
+  jobs:  
+  - job: Test
+    displayName: Test
+    steps:
+    - script: |
+         echo "TEST CASES"
 
 
 - stage: DEPLOY 
@@ -62,19 +63,10 @@ stages:
     displayName: Deploy
     steps:
     
-
-    - script: |
-        ls 
-        
-        pwd
-        cd $(Build.ArtifactStagingDirectory) 
-        ls 
-    #displayName: 'Build React app'
-    
     - task: AzureStaticWebApp@0
       inputs:
         azure_static_web_apps_api_token: $(STATIC_WEB_APP_TOKEN)
-        app_location: "/" # App source code path
-        api_location: "" # Api source code path - optional
-        output_location: "build"  # Set to true if you want to skip build in the pipeline
+        app_location: "/" 
+        api_location: "" 
+        output_location: "build" 
        
