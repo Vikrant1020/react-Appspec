@@ -67,7 +67,8 @@ stages:
         ls 
         
         pwd
-        cd $(Build.ArtifactStagingDirectory) && ls 
+        cd $(Build.ArtifactStagingDirectory) 
+        ls 
     #displayName: 'Build React app'
     
     # - task: AzureStaticWebApp@0
