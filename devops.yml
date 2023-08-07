@@ -72,11 +72,9 @@ stages:
     #displayName: 'Build React app'
     
     - task: AzureStaticWebApp@0
-      inputs:
-        app_location: '$(Build.ArtifactStagingDirectory)/GS'
-        api_location: 'api'  # If you have an API in your app
-        output_location: 'build'
-        azure_static_web_apps_api_token: $(STATIC_WEB_APP_TOKEN)
-        app_build_command: ''  # Add your build commands if needed
-        skip_app_build: true   # Set to true if you want to skip build in the pipeline
+    inputs:
+      azure_static_web_apps_api_token: $(STATIC_WEB_APP_TOKEN)
+      app_location: "/" # App source code path
+      api_location: "" # Api source code path - optional
+      output_location: "build"  # Set to true if you want to skip build in the pipeline
        
