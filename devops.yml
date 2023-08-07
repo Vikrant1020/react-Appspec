@@ -70,7 +70,7 @@ stages:
     
     - task: AzureStaticWebApp@0
       inputs:
-        app_location: '$(Build.ArtifactStagingDirectory)'
+        app_location: './build'
         api_location: 'api'  # If you have an API in your app
         output_location: 'build'
         azure_static_web_apps_api_token: $(STATIC_WEB_APP_TOKEN)
