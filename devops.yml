@@ -38,6 +38,12 @@ stages:
         Contents: '**'
         TargetFolder: '$(Build.ArtifactStagingDirectory)'
       displayName: 'Copy build to artifact staging directory'
+      
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'react-app'
+        publishLocation: 'Container'
 
 # - stage: TEST 
 #   displayName: TEST 
@@ -56,11 +62,7 @@ stages:
     displayName: Deploy
     steps:
     
-    - task: PublishBuildArtifacts@1
-      inputs:
-        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-        ArtifactName: 'react-app'
-        publishLocation: 'Container'
+
     - script: |
         ls 
         pwd
@@ -68,7 +70,7 @@ stages:
     
     - task: AzureStaticWebApp@0
       inputs:
-        app_location: '/'
+        app_location: '$(Build.ArtifactStagingDirectory)'
         api_location: 'api'  # If you have an API in your app
         output_location: 'build'
         azure_static_web_apps_api_token: $(STATIC_WEB_APP_TOKEN)
