@@ -7,19 +7,14 @@ pool:
 steps:
 - checkout: self  # This step checks out your repository
 
-- script: echo Install Node.js
-  displayName: 'Install Node.js'
-
 - task: NodeTool@0
   inputs:
-    versionSpec: '14.x'
+    versionSpec: '16.x'
   displayName: 'Use Node.js'
-
-- script: cd my-app && npm install
-  displayName: 'Install Node.js dependencies'
 
 - script: |
     # cd my-app  # Navigate to the my-app folder using the correct path
+    npm install
     npm run build
   displayName: 'Build React app'
 
