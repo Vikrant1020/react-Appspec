@@ -5,14 +5,14 @@ pool:
   vmImage: 'ubuntu-latest'
 
 stages:
-- stage: SONARQUBE 
-  displayName: SONARQUBE 
-  jobs:  
-  - job: Build
-    displayName: Build
-    steps:
-    - script: |
-          echo "SONARQUBE SLOT"
+# - stage: SONARQUBE 
+#   displayName: SONARQUBE 
+#   jobs:  
+#   - job: Sonarqube
+#     displayName: Sonarqube
+#     steps:
+#     - script: |
+#           echo "SONARQUBE SLOT"
 
 - stage: BUILD 
   displayName: BUILD 
@@ -39,21 +39,21 @@ stages:
         TargetFolder: '$(Build.ArtifactStagingDirectory)'
       displayName: 'Copy build to artifact staging directory'
 
-- stage: TEST 
-  displayName: TEST 
-  jobs:  
-  - job: Test
-    displayName: Test
-    steps:
-    - script: |
-         echo "TEST CASES"
+# - stage: TEST 
+#   displayName: TEST 
+#   jobs:  
+#   - job: Test
+#     displayName: Test
+#     steps:
+#     - script: |
+#          echo "TEST CASES"
 
 
 - stage: DEPLOY 
   displayName: DEPLOY 
   jobs:  
-  - job: Build
-    displayName: Build
+  - job: Deploy
+    displayName: Deploy
     steps:
     
     - task: PublishBuildArtifacts@1
@@ -64,7 +64,7 @@ stages:
     
     - task: AzureStaticWebApp@0
       inputs:
-        app_location: '$(Build.ArtifactStagingDirectory)/build'
+        app_location: '$(Build.ArtifactStagingDirectory)'
         api_location: 'api'  # If you have an API in your app
         output_location: 'build'
         azure_static_web_apps_api_token: $(STATIC_WEB_APP_TOKEN)
