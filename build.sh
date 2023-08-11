@@ -12,6 +12,9 @@ while true; do
         rm /app/runbuild
         echo "The file deleted"
 
+
+
+as
     else
         echo "The file  does not exist in ."
     fi
