@@ -69,4 +69,6 @@ stages:
         app_location: "/" 
         api_location: "" 
         output_location: "build" 
-       
+      env: # Add environment variables here
+        REACT_APP_BASE_URL: $(REACT_APP_BASE_URL)
+        REACT_APP_EN_KEY: $(REACT_APP_EN_KEY)
