@@ -22,6 +22,8 @@ stages:
         cliProjectKey: 'greensight'
         cliProjectName: 'greensight'
         cliSources: '.'
+        extraProperties: |
+          sonar.branch.name=main
     
     - task: NodeTool@0
       inputs:
