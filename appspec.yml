@@ -2,11 +2,11 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /home/ubuntu
-hooks:
-  AfterInstall:
-    - location: npm.sh
-      timeout: 300
-  ApplicationStart:
-    - location: start.sh
-      timeout: 100
+    destination: /var/www/html/
+# hooks:
+#   AfterInstall:
+#     - location: npm.sh
+#       timeout: 300
+#   ApplicationStart:
+#     - location: start.sh
+#       timeout: 100
